@@ -2,6 +2,7 @@
 
 namespace App\src\User;
 
+use App\src\Shared\BusinessException;
 use App\src\Shared\EncrypterService;
 use App\src\User\ValueObjects\Email;
 use App\src\User\ValueObjects\Password;
@@ -42,6 +43,8 @@ class User {
         string $email,
         string $password
     ): User {
+        if ($id < 1)
+            throw new BusinessException("The id must be greater than 0");
         $password = new Password($password);
         return new User($id, $name, $email, $password);
     }

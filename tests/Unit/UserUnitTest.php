@@ -36,4 +36,22 @@ class UserUnitTest extends TestCase {
             1, UserUnitTestUtils::$userName, UserUnitTestUtils::$invalidEmail, UserUnitTestUtils::$encryptedPassword
         );
     }
+
+    public function test_should_not_instantiate_user_with_invalid_password(): void {
+        $encrypterService = \Mockery::mock(EncrypterService::class);
+        $this->expectException(BusinessException::class);
+        $this->expectExceptionMessage(UserUnitTestUtils::$invalidPasswordErrorMessage);
+        User::buildNonExistentUser(
+            UserUnitTestUtils::$userName, UserUnitTestUtils::$validEmail, UserUnitTestUtils::$invalidPassword,
+            $encrypterService
+        );
+    }
+
+    public function test_should_not_instantiate_existent_user_with_invalid_id(): void {
+        $this->expectException(BusinessException::class);
+        $this->expectExceptionMessage(UserUnitTestUtils::$invalidIdErrorMessage);
+        User::buildExistentUser(
+            0, UserUnitTestUtils::$userName, UserUnitTestUtils::$validEmail, UserUnitTestUtils::$invalidPassword
+        );
+    }
 }
