@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Unit\User;
 
 use App\src\Shared\BusinessException;
 use App\src\Shared\EncrypterService;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Unit\User;
 
 class UserUnitTestUtils {
     public static string $userName = "Carlos Henrique";
