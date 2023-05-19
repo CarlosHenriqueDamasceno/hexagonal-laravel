@@ -2,20 +2,22 @@
 
 namespace Tests\Unit\User;
 
-use App\src\Shared\BusinessException;
-use App\src\Shared\EncrypterService;
-use App\src\User\User;
+use App\Business\Shared\BusinessException;
+use App\Business\Shared\EncrypterService;
+use App\Business\User\User;
 use PHPUnit\Framework\TestCase;
 
 class UserUnitTest extends TestCase {
 
     public function test_should_instantiate_a_new_user(): void {
         $encrypterService = \Mockery::mock(EncrypterService::class);
-        $encrypterService->shouldReceive('encrypt')->with(UserUnitTestUtils::$uncryptedPassword)->andReturn(
-            UserUnitTestUtils::$encryptedPassword
-        );
+        $encrypterService->shouldReceive('encrypt')->with(UserUnitTestUtils::$uncryptedPassword)
+            ->andReturn(
+                UserUnitTestUtils::$encryptedPassword
+            );
         $user = User::buildNonExistentUser(
-            UserUnitTestUtils::$userName, UserUnitTestUtils::$validEmail, UserUnitTestUtils::$uncryptedPassword,
+            UserUnitTestUtils::$userName, UserUnitTestUtils::$validEmail,
+            UserUnitTestUtils::$uncryptedPassword,
             $encrypterService
         );
         $this->assertEquals(UserUnitTestUtils::$encryptedPassword, $user->password->value);
@@ -24,7 +26,8 @@ class UserUnitTest extends TestCase {
 
     public function test_should_instantiate_a_existent_user(): void {
         $user = User::buildExistentUser(
-            1, UserUnitTestUtils::$userName, UserUnitTestUtils::$validEmail, UserUnitTestUtils::$encryptedPassword
+            1, UserUnitTestUtils::$userName, UserUnitTestUtils::$validEmail,
+            UserUnitTestUtils::$encryptedPassword
         );
         $this->assertEquals(1, $user->id);
     }
@@ -33,7 +36,8 @@ class UserUnitTest extends TestCase {
         $this->expectException(BusinessException::class);
         $this->expectExceptionMessage(UserUnitTestUtils::$invalidEmailErrorMessage);
         User::buildExistentUser(
-            1, UserUnitTestUtils::$userName, UserUnitTestUtils::$invalidEmail, UserUnitTestUtils::$encryptedPassword
+            1, UserUnitTestUtils::$userName, UserUnitTestUtils::$invalidEmail,
+            UserUnitTestUtils::$encryptedPassword
         );
     }
 
@@ -42,7 +46,8 @@ class UserUnitTest extends TestCase {
         $this->expectException(BusinessException::class);
         $this->expectExceptionMessage(UserUnitTestUtils::$invalidPasswordErrorMessage);
         User::buildNonExistentUser(
-            UserUnitTestUtils::$userName, UserUnitTestUtils::$validEmail, UserUnitTestUtils::$invalidPassword,
+            UserUnitTestUtils::$userName, UserUnitTestUtils::$validEmail,
+            UserUnitTestUtils::$invalidPassword,
             $encrypterService
         );
     }
@@ -51,7 +56,8 @@ class UserUnitTest extends TestCase {
         $this->expectException(BusinessException::class);
         $this->expectExceptionMessage(UserUnitTestUtils::$invalidIdErrorMessage);
         User::buildExistentUser(
-            0, UserUnitTestUtils::$userName, UserUnitTestUtils::$validEmail, UserUnitTestUtils::$invalidPassword
+            0, UserUnitTestUtils::$userName, UserUnitTestUtils::$validEmail,
+            UserUnitTestUtils::$invalidPassword
         );
     }
 }

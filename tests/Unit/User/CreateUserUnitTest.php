@@ -2,11 +2,10 @@
 
 namespace Tests\Unit\User;
 
-use App\src\Shared\EncrypterService;
-use App\src\User\CreateUserImpl;
-use App\src\User\Ports\CreateUserInput;
-use App\src\User\Ports\UserRepository;
-use App\src\User\User;
+use App\Business\Shared\EncrypterService;
+use App\Business\User\CreateUserImpl;
+use App\Business\User\Port\CreateUserInput;
+use App\Business\User\Port\UserRepository;
 use PHPUnit\Framework\TestCase;
 
 class CreateUserUnitTest extends TestCase {
@@ -18,25 +17,15 @@ class CreateUserUnitTest extends TestCase {
             ->andReturn(
                 UserUnitTestUtils::$encryptedPassword
             );
-        $userToSave = User::buildNonExistentUser(
-            UserUnitTestUtils::$userName, UserUnitTestUtils::$validEmail,
-            UserUnitTestUtils::$uncryptedPassword,
-            $encrypterService
-        );
         $userRepository = \Mockery::mock(UserRepository::class);
         $userRepository->shouldReceive('create')->with(
             \Mockery::on(
-                function ($arg) use ($userToSave) {
-                    return $userToSave == $arg;
+                function ($arg) {
+                    return UserUnitTestUtils::$toSaveUser == $arg;
                 }
             )
         )->andReturn(
-            User::buildExistentUser(
-                1,
-                UserUnitTestUtils::$userName,
-                UserUnitTestUtils::$validEmail,
-                UserUnitTestUtils::$encryptedPassword
-            )
+            UserUnitTestUtils::$existentUser
         );
         $createUser = new CreateUserImpl($userRepository, $encrypterService);
         $input = new CreateUserInput(

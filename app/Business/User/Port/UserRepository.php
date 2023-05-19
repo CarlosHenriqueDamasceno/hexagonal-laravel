@@ -1,9 +1,9 @@
 <?php
 
-namespace App\src\User\Ports;
+namespace App\Business\User\Port;
 
 
-use App\src\User\User;
+use App\Business\User\User;
 
 interface UserRepository {
     public function create(User $user): User;

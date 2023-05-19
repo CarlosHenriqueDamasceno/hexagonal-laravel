@@ -1,6 +1,6 @@
 <?php
 
-namespace App\src\Shared;
+namespace App\Business\Shared;
 
 interface EncrypterService {
     public function encrypt(string $password): string;

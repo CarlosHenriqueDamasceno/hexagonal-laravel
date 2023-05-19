@@ -1,18 +1,18 @@
 <?php
 
-namespace App\src\User;
+namespace App\Business\User;
 
-use App\src\Shared\BusinessException;
-use App\src\Shared\EncrypterService;
-use App\src\User\ValueObjects\Email;
-use App\src\User\ValueObjects\Password;
+use App\Business\Shared\BusinessException;
+use App\Business\Shared\EncrypterService;
+use App\Business\User\ValueObject\Email;
+use App\Business\User\ValueObject\Password;
 
-class User {
+readonly class User {
 
-    public readonly ?int $id;
-    public readonly string $name;
-    public readonly Email $email;
-    public readonly Password $password;
+    public ?int $id;
+    public string $name;
+    public Email $email;
+    public Password $password;
 
     private function __construct(
         ?int $id, string $name, string $email,

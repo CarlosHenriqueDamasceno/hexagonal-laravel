@@ -1,6 +1,6 @@
 <?php
 
-namespace App\src\Shared;
+namespace App\Business\Shared;
 
 class BusinessException extends \RuntimeException {
     public function __construct(string $message) {
