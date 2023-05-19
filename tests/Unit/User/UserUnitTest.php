@@ -2,9 +2,9 @@
 
 namespace Tests\Unit\User;
 
-use App\Business\Shared\BusinessException;
 use App\Business\Shared\EncrypterService;
-use App\Business\User\User;
+use App\Business\Shared\Exception\BusinessException;
+use App\Business\User\Domain\User;
 use PHPUnit\Framework\TestCase;
 
 class UserUnitTest extends TestCase {

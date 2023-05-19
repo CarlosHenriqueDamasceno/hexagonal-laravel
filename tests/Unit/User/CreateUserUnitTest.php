@@ -3,8 +3,8 @@
 namespace Tests\Unit\User;
 
 use App\Business\Shared\EncrypterService;
-use App\Business\User\CreateUserImpl;
-use App\Business\User\Port\CreateUserInput;
+use App\Business\User\Domain\Application\CreateUserImpl;
+use App\Business\User\Port\Dto\CreateUserInput;
 use App\Business\User\Port\UserRepository;
 use PHPUnit\Framework\TestCase;
 

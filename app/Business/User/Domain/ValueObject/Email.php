@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Business\User\ValueObject;
+namespace App\Business\User\Domain\ValueObject;
 
-use App\Business\Shared\BusinessException;
+use App\Business\Shared\Exception\BusinessException;
 
 class Email {
 

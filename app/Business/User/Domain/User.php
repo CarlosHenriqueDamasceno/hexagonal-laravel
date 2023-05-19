@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Business\User;
+namespace App\Business\User\Domain;
 
-use App\Business\Shared\BusinessException;
 use App\Business\Shared\EncrypterService;
-use App\Business\User\ValueObject\Email;
-use App\Business\User\ValueObject\Password;
+use App\Business\Shared\Exception\BusinessException;
+use App\Business\User\Domain\ValueObject\Email;
+use App\Business\User\Domain\ValueObject\Password;
 
 readonly class User {
 

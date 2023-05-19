@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Business\User\Port;
+namespace App\Business\User\Port\Dto;
 
 class CreateUserInput {
     public function __construct(

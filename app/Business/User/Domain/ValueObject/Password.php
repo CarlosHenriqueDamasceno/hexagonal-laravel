@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Business\User\ValueObject;
+namespace App\Business\User\Domain\ValueObject;
 
-use App\Business\Shared\BusinessException;
 use App\Business\Shared\EncrypterService;
+use App\Business\Shared\Exception\BusinessException;
 
 class Password {
     public function __construct(public readonly string $value) {}
