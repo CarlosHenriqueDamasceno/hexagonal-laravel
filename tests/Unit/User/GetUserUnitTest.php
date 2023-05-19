@@ -31,9 +31,9 @@ class GetUserUnitTest extends TestCase {
             ->andThrow(
                 ResourceNotFoundException::class
             );
+        $findUser = new FindUserImpl($userRepository);
         $this->expectException(BusinessException::class);
         $this->expectExceptionMessage(UserUnitTestUtils::$userNotFoundErrorMessage);
-        $findUser = new FindUserImpl($userRepository);
-        $user = $findUser->execute(1);
+        $findUser->execute(1);
     }
 }
