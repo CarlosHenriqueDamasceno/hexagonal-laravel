@@ -9,4 +9,6 @@ interface UserRepository {
     public function create(User $user): User;
 
     public function find(int $id): User;
+
+    public function update(User $user): User;
 }

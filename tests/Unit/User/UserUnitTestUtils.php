@@ -8,6 +8,7 @@ use App\Business\User\Domain\User;
 
 class UserUnitTestUtils {
     public static string $userName = "Carlos Henrique";
+    public static string $updatedUserName = "Carlos Henrique editado";
     public static string $validEmail = "carlos@teste.com";
     public static string $invalidEmail = "carlos@teste";
     public static string $uncryptedPassword = "123123123";
@@ -21,6 +22,7 @@ class UserUnitTestUtils {
 
     public static User $existentUser;
     public static User $toSaveUser;
+    public static User $updatedUser;
 
     public static function init() {
         $encrypterService = \Mockery::mock(EncrypterService::class);
@@ -38,6 +40,12 @@ class UserUnitTestUtils {
         self::$existentUser = User::buildExistentUser(
             1,
             UserUnitTestUtils::$userName,
+            UserUnitTestUtils::$validEmail,
+            UserUnitTestUtils::$encryptedPassword
+        );
+        self::$updatedUser = User::buildExistentUser(
+            1,
+            UserUnitTestUtils::$updatedUserName,
             UserUnitTestUtils::$validEmail,
             UserUnitTestUtils::$encryptedPassword
         );

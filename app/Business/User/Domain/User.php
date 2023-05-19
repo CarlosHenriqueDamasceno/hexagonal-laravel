@@ -6,6 +6,7 @@ use App\Business\Shared\EncrypterService;
 use App\Business\Shared\Exception\BusinessException;
 use App\Business\User\Domain\ValueObject\Email;
 use App\Business\User\Domain\ValueObject\Password;
+use function PHPUnit\Framework\isNull;
 
 readonly class User {
 
@@ -47,6 +48,15 @@ readonly class User {
             throw new BusinessException("The id must be greater than 0");
         $password = new Password($password);
         return new User($id, $name, $email, $password);
+    }
+
+    public function copyWith(?string $name): User {
+        return new User(
+            id: $this->id,
+            name: (!isNull($name) ? $name : $this->name),
+            email: $this->email->value,
+            password: $this->password
+        );
     }
 }
 
