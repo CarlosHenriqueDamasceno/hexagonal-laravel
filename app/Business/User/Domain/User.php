@@ -6,7 +6,6 @@ use App\Business\Shared\EncrypterService;
 use App\Business\Shared\Exception\BusinessException;
 use App\Business\User\Domain\ValueObject\Email;
 use App\Business\User\Domain\ValueObject\Password;
-use function PHPUnit\Framework\isNull;
 
 readonly class User {
 
@@ -53,7 +52,7 @@ readonly class User {
     public function copyWith(?string $name): User {
         return new User(
             id: $this->id,
-            name: (!isNull($name) ? $name : $this->name),
+            name: (!is_null($name) ? $name : $this->name),
             email: $this->email->value,
             password: $this->password
         );
