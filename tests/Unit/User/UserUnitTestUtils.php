@@ -3,7 +3,7 @@
 namespace Tests\Unit\User;
 
 
-use App\Business\Shared\EncrypterService;
+use App\Business\Shared\Port\EncryptService;
 use App\Business\User\Domain\User;
 
 class UserUnitTestUtils {
@@ -25,7 +25,7 @@ class UserUnitTestUtils {
     public static User $updatedUser;
 
     public static function init() {
-        $encrypterService = \Mockery::mock(EncrypterService::class);
+        $encrypterService = \Mockery::mock(EncryptService::class);
         $encrypterService
             ->shouldReceive('encrypt')
             ->with(UserUnitTestUtils::$uncryptedPassword)

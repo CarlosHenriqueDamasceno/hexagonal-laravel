@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Business\Shared;
+namespace App\Business\Shared\Port;
 
-interface EncrypterService {
+interface EncryptService {
     public function encrypt(string $password): string;
 }

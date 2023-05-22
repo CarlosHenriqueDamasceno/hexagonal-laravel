@@ -2,8 +2,8 @@
 
 namespace App\Business\User\Domain;
 
-use App\Business\Shared\EncrypterService;
 use App\Business\Shared\Exception\BusinessException;
+use App\Business\Shared\Port\EncryptService;
 use App\Business\User\Domain\ValueObject\Email;
 use App\Business\User\Domain\ValueObject\Password;
 
@@ -31,7 +31,7 @@ readonly class User {
         string $name,
         string $email,
         string $password,
-        EncrypterService $encrypterService
+        EncryptService $encrypterService
     ): User {
         $password = Password::build($password, $encrypterService);
         return new User(null, $name, $email, $password);

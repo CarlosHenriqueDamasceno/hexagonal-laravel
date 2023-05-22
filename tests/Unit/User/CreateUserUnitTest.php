@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\User;
 
-use App\Business\Shared\EncrypterService;
+use App\Business\Shared\Port\EncryptService;
 use App\Business\User\Domain\Application\CreateUserImpl;
 use App\Business\User\Port\Dto\CreateUserInput;
 use App\Business\User\Port\UserRepository;
@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class CreateUserUnitTest extends TestCase {
     public function test_should_create_an_user(): void {
-        $encrypterService = \Mockery::mock(EncrypterService::class);
+        $encrypterService = \Mockery::mock(EncryptService::class);
         $encrypterService
             ->shouldReceive('encrypt')
             ->with(UserUnitTestUtils::$uncryptedPassword)
