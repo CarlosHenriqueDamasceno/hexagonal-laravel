@@ -2,6 +2,6 @@
 
 namespace App\Business\User\Port\Dto;
 
-class UpdateUserInput {
-    public function __construct(public readonly string $name) {}
+readonly class UpdateUserInput {
+    public function __construct(public string $name) {}
 }
