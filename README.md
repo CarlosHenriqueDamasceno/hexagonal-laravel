@@ -5,6 +5,6 @@
 <p>You can find the "core" application code (the hexagon) inside app/Business</p>
 
 <p>References:</p>
-<https://github.com/rodrigobranas/fullcycle_design_patterns2>
-<https://github.com/rodrigobranas/hexagonal_architecture_integration_unit_tests>
-<https://blog.octo.com/hexagonal-architecture-three-principles-and-an-implementation-example/>
+https://github.com/rodrigobranas/fullcycle_design_patterns2
+https://github.com/rodrigobranas/hexagonal_architecture_integration_unit_tests
+https://blog.octo.com/hexagonal-architecture-three-principles-and-an-implementation-example
