@@ -15,8 +15,7 @@ readonly class User {
     public Password $password;
 
     private function __construct(
-        ?int $id, string $name, string $email,
-        Password $password
+        ?int $id, string $name, string $email, Password $password
     ) {
 
         $email = Email::build($email);

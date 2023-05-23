@@ -24,30 +24,30 @@ class UserUnitTestUtils {
     public static User $toSaveUser;
     public static User $updatedUser;
 
-    public static function init() {
+    public static function init(): void {
         $encrypterService = \Mockery::mock(EncryptService::class);
         $encrypterService
             ->shouldReceive('encrypt')
-            ->with(UserUnitTestUtils::$uncryptedPassword)
+            ->with(CategoryUnitTestUtils::$uncryptedPassword)
             ->andReturn(
-                UserUnitTestUtils::$encryptedPassword
+                CategoryUnitTestUtils::$encryptedPassword
             );
         self::$toSaveUser = User::buildNonExistentUser(
-            UserUnitTestUtils::$userName, UserUnitTestUtils::$validEmail,
-            UserUnitTestUtils::$uncryptedPassword,
+            CategoryUnitTestUtils::$userName, CategoryUnitTestUtils::$validEmail,
+            CategoryUnitTestUtils::$uncryptedPassword,
             $encrypterService
         );
         self::$existentUser = User::buildExistentUser(
             1,
-            UserUnitTestUtils::$userName,
-            UserUnitTestUtils::$validEmail,
-            UserUnitTestUtils::$encryptedPassword
+            CategoryUnitTestUtils::$userName,
+            CategoryUnitTestUtils::$validEmail,
+            CategoryUnitTestUtils::$encryptedPassword
         );
         self::$updatedUser = User::buildExistentUser(
             1,
-            UserUnitTestUtils::$updatedUserName,
-            UserUnitTestUtils::$validEmail,
-            UserUnitTestUtils::$encryptedPassword
+            CategoryUnitTestUtils::$updatedUserName,
+            CategoryUnitTestUtils::$validEmail,
+            CategoryUnitTestUtils::$encryptedPassword
         );
     }
 

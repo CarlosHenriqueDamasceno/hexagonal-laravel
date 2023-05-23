@@ -4,7 +4,7 @@ namespace App\Business\User\Port\Dto;
 
 use App\Business\User\Domain\User;
 
-readonly class UserOutputDto {
+readonly class UserOutput {
     public int $id;
     public string $name;
     public string $email;
@@ -22,8 +22,8 @@ readonly class UserOutputDto {
         $this->password = $password;
     }
 
-    public static function fromUser(User $user): UserOutputDto {
-        return new UserOutputDto(
+    public static function fromUser(User $user): UserOutput {
+        return new UserOutput(
             $user->id,
             $user->name,
             $user->email->value,

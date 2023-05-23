@@ -16,22 +16,22 @@ class UpdateUserUnitTest extends TestCase {
             ->shouldReceive('find')
             ->with(1)
             ->andReturn(
-                UserUnitTestUtils::$existentUser
+                CategoryUnitTestUtils::$existentUser
             );
         $userRepository
             ->shouldReceive('update')
             ->with(
                 \Mockery::on(
-                    function ($param) { return $param == UserUnitTestUtils::$updatedUser; }
+                    function ($param) { return $param == CategoryUnitTestUtils::$updatedUser; }
                 )
             )
             ->andReturn(
-                UserUnitTestUtils::$updatedUser
+                CategoryUnitTestUtils::$updatedUser
             );
-        $input = new UpdateUserInput(UserUnitTestUtils::$updatedUserName);
+        $input = new UpdateUserInput(CategoryUnitTestUtils::$updatedUserName);
         $updateUser = new UpdateUserImpl($userRepository);
         $user = $updateUser->execute(1, $input);
-        $this->assertEquals(UserUnitTestUtils::$updatedUserName, $user->name);
+        $this->assertEquals(CategoryUnitTestUtils::$updatedUserName, $user->name);
     }
 
     public function test_should_not_update_user_invalid_id(): void {
@@ -42,10 +42,10 @@ class UpdateUserUnitTest extends TestCase {
             ->andThrow(
                 ResourceNotFoundException::class
             );
-        $input = new UpdateUserInput(UserUnitTestUtils::$updatedUserName);
+        $input = new UpdateUserInput(CategoryUnitTestUtils::$updatedUserName);
         $update = new UpdateUserImpl($userRepository);
         $this->expectException(BusinessException::class);
-        $this->expectExceptionMessage(UserUnitTestUtils::$userNotFoundErrorMessage);
+        $this->expectExceptionMessage(CategoryUnitTestUtils::$userNotFoundErrorMessage);
         $update->execute(1, $input);
     }
 }
